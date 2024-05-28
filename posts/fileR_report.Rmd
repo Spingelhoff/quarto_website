@@ -1,0 +1,193 @@
+---
+title: "fileR: A Pipeable Interface to Directory Creation and Use"
+author: "Victor Lao"
+date: 2023-04-15
+output:
+  blogdown::html_page:
+toc: true
+---
+
+## Introduction
+
+The R programming language can be used for a variety of purposes. The use case I find most relevant to my day-to-day life (read day job), is the repetitive conversion of data from one form to another (typically for entry into a database). Without cooperate business infrastructure for R, most work needs to be done on my own workstation.
+
+Many great packages and ecosystems exist for data manipulation in R. One collection of packages which frequently enters my work is the tidyverse. A key feature of these collection of packages is the ability of functions to be piped together.
+
+The fileR package is my attempt at a framework that helps to facilitate repetitive data wrangling by separating file input/outputs into two distinct directories, 'data' and 'results'.
+
+## Rationale/Framework
+
+R by default saves and reads files into and from the working directory. As the number of file inputs and outputs increase, the readability decreases. This can be a problem when returning to older projects.
+
+Sub-folder and directories is the obvious answer to organization problems however, working with file paths is cumbersome and prone to error. Approaches to file organization should be standardized across projects so file inputs and outputs are more readily understood between projects.
+
+To facilitate reproducible and easy file organization, I created a minimal framework for working directory structure. I then created wrappers around base R functions for reading and writing files to interact with that framework.
+
+The working directory is divided into three sections. The working directory itself, the 'data' directory and the 'results' directory. The working directory should only contain R scripts and the 'data' and 'results' directories. The 'data' directory should only contain raw data. The 'results' directory should contain all products of manipulation in R. Folders (sub-directories) can be created within the 'data' and 'results' directory however, are recommended to be terminal.
+
+## Methodology
+
+Wrappers were written around two base R functions: read.csv and write.csv. To ensure compatibility with the tidyverse set of packages, all functions that write files were made to be pipeable (i.e., the first argument is always an object that is returned back). Read functions are typically at the start of a pipe.
+
+```{r eval=FALSE, include=TRUE}
+save_csv_to_results_folder <- function(x, folder_name, file_name, ...) {
+  if(!dir.exists("results")) {
+    stop("results directory does not exist")
+  }
+  if(!is.character(folder_name) | !is.character(file_name)) {
+    stop("folder_name and file_name must be of type character")
+  }
+  if(!dir.exists(paste0("./results/", folder_name))) {
+    dir.create(paste0("./results/", folder_name))
+  }
+  write.csv(x, paste0("./results/", folder_name, "/", file_name, ".csv"), ...)
+  invisible(x)
+}
+```
+
+The above 'save_csv_to_results_folder' function returns 'x' invisibly. One use case, would be to save intermediate results to a folder which allows you to produce multiple outputs in one pipe without having to exit the pipe.
+
+Functions were also written to read data from entire folders and return them as a list. There is no function to recursively retrieve files from an entire directory as it should be clear where your data is coming from (i.e., you should state it in code). 
+
+```{r eval=FALSE, include=TRUE}
+read_all_csv_from_data <- function(folder_name = NULL, ...) {
+  if(!dir.exists("data")) {
+    stop("data directory does not exist")
+  }
+  if(!is.null(folder_name)) {
+    if(!is.character(folder_name)) {
+      stop("folder_name must be of type character")
+    }
+    if(!dir.exists(paste0("./data/", folder_name))) {
+      stop(paste0(folder_name, " does not exist in the data directory"))
+    }
+    file_list <- list.files(paste0("./data/", folder_name))
+    file_accumulator <- vector("list", length = length(file_list))
+    names(file_accumulator) <- file_list
+    lapply(
+      file_list,
+      function(file_name){
+        file <- read.csv(paste0("./data/", folder_name, "/", file_name), ...)
+        file_accumulator[[file_name]] <<- file
+      }
+    )
+    return(file_accumulator)
+  } else {
+    file_list <- list.files("./data")
+    file_accumulator <- vector("list", length = length(file_list))
+    names(file_accumulator) <- file_list
+    lapply(
+      file_list,
+      function(file_name){
+        file <- read.csv(paste0("./data/", file_name), ...)
+        file_accumulator[[file_name]] <<- file
+      }
+    )
+    return(file_accumulator)
+  }
+  return(file_accumulator)
+}
+```
+
+The above 'read_all_csv_from_data' initializes a list and with names based on the file names being read. Data is then read in and appended to the pre-existing list. This approach is to prevent growing a vector in R as it can cause drastic speed reductions for larger datasets.
+
+To facilitate repetitive cleanups of folders and directories (e.g., cleaning out a data input folder to prevent processing data twice), functions were written to move batches of files between folders within a directory.
+
+```{r eval=FALSE, include=TRUE}
+move_all_files_to_data_folder <- function(to, exclude = NULL) {
+  if(!is.character(to)) {
+    stop("to parameter must be of type character")
+  }
+  if(length(to) != 1) {
+    stop("to parameter must be of length 1")
+  }
+  all_files <- list.files(paste0("./data"), recursive = TRUE, full.names = TRUE)
+  target_files <- all_files[!grepl(paste0("^./data/", to, "/"), all_files)]
+  if(!is.null(exclude)) {
+    if(is.character(exclude)) {
+      lapply(
+        exclude,
+        function(x) target_files <<- target_files[!grepl(paste0("^./data/", x, "/"), target_files)]
+      )
+    } else {
+      stop("exclusion(s) must be of type character")
+    }
+  }
+  file.copy(
+    from = target_files,
+    to = paste0("./data/", to, "/")
+  )
+  from_test <- list.files("./data", recursive = TRUE)
+  if(!is.null(exclude)) {
+    if(is.character(exclude)) {
+      lapply(
+        exclude,
+        function(x) from_test <<- from_test[!grepl(paste0("^", x, "/"), from_test)]
+      )
+    } else {
+      stop("exclusion(s) must be of type character")
+    }
+  }
+  from_test <- sub("^.*/", "", from_test)
+  to_test <- list.files(paste0("./data/", to))
+  if(!all((from_test %in% to_test))) {
+    stop("files were not correctly copied")
+  }
+  file.remove(target_files)
+  invisible(NULL)
+}
+```
+
+In the above function, files are copied to the new folder, checked, then deleted from the original folder. There is an implicit assumption in the way the check is done. The string cleanup assumes that the 'data' directory does not recurse more than one level. As a check with these assumptions is done, unintentional usage should generate an error. This is in line with the opinions of this package. The 'to' folder is excluded from the copy function to prevent unnecessary repetition however, further exclusions can be provided, optionally.
+
+## List of Functions
+
+Functions were named to be descriptive at the cost of being verbose.
+
+### create_data_folder()
+
+Purpose: To create a folder in the 'data' directory. Data should be moved into pre-existing 'data' locations. 
+
+### list_data_files()
+
+Purpose: To list files in 'data' directory and optionally a sub-directory of the 'data' directory.
+
+### move_all_files_to_data_folder()
+
+Purpose: To move all files recursively in the 'data' directory to a specified 'data' folder. Files in the target folder prior to move are not affected. Additional folders can be specified, optionally.
+
+### move_all_files_to_results_folder()
+
+Purpose: To move all files recursively in the 'results' directory to a specified 'results' folder. Files in the target folder prior to move are not affected. Additional folders can be specified, optionally.
+
+### move_files_between_data_folders()
+
+Purpose: To move all files in one 'data' folder to another 'data' folder.
+
+### move_files_between_results_folders()
+
+Purpose: To move all files in one 'results' folder to another 'results' folder.
+
+### read_all_csv_from_data()
+
+Purpose: To return all csv files in the 'data' directory as a list. Sub-directories of the 'data' directory can also be targeted.
+
+### read_all_csv_from_results()
+
+Purpose: To return all csv files in the 'results' directory as a list. Sub-directories of the 'results' directory should be targeted over the entire 'results' directory. 
+
+### read_csv_from_data()
+
+Purpose: To read a single csv file from the 'data' directory or one of its sub-directories.
+
+### read_csv_from_results()
+
+Purpose: To read a single csv file from the 'data' directory or one of its sub-directories.
+
+### save_csv_to_results_folder()
+
+Purpose: To save an object to the 'results' directory or one of its sub-directories as a csv file. Will create a sub-directory or 'folder' if one does not exist. Will return the object passed in invisibly. 
+
+### setup_fileR_directories()
+
+Purpose: Creates 'data' and 'results' directories. Projects using fileR should start with this function.

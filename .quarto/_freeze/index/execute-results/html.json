@@ -1,0 +1,14 @@
+{
+  "hash": "89b9dfa3f3575bfdd0e2de717b8ca4eb",
+  "result": {
+    "markdown": "---\ntitle: \"The Portfolio\"\nabout:\n    template: jolla\n    links: \n      - icon: github\n        text: github\n        href: https://github.com\n      - icon: linkedin\n        text: linkedin\n        href: https://linkedin.com\n---\n\n\nData Specialist \\| Researcher \\| Analyst\n\nA researcher at heart, I love to analyze and explore interesting datasets. I am passionate about learning new ways to pursue research based hypotheses.\n\nThis is a Quarto website.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

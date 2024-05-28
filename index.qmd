@@ -1,0 +1,19 @@
+---
+title: "A Portfolio Site"
+image: ProfilePic.jpg
+about:
+    template: jolla
+    links: 
+      - icon: github
+        text: github
+        href: https://github.com/Spingelhoff
+      - icon: linkedin
+        text: linkedin
+        href: https://www.linkedin.com/in/victor-lao-3827ba196
+---
+
+## Data Specialist \| Researcher \| Analyst
+
+A researcher at heart, I love to work with data and I am passionate about learning new ways to pursue research based hypotheses.
+
+This website is a space for me to share my journey with data. I include all personal projects with structured reports. Personal career information is also available.

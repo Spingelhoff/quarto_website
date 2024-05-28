@@ -1,0 +1,71 @@
+---
+title: "Using Rvest to Create a Product Code Translator"
+author: "Victor Lao"
+date: 2023-03-28
+output: 
+  blogdown::html_page:
+    toc: TRUE
+---
+
+## Introduction
+
+Webpages remain a key source of information in the digital age (think Wikipedia). For repetitive tasks is inefficient to manually interact with these sources of information. Thankfully, web scraping tools exist that help to make retrieving information from the internet easier.
+
+A recent problem I came across was the conversion of product codes from one manufacturer to another. Different vendors have different naming conventions for the same part. These vendors typically have online resources for converting competitor product names into their own. To accomplish the task of converting our own product list, I developed a small scrapper using the "rvest" package to automate translation.
+
+## Repository Link
+
+https://github.com/Spingelhoff/leviton_crossreference_scraper
+
+## Methodology
+
+The goal of the project was to create a re-usable system that would be able to read an arbitrary amount of source items and convert them into the closest equivalent of another vendor. The fileR package (personal package) was used to standardize input and output into directories. The rvest package was used to extract relevant information (in this case the equivalent product code).
+
+The reference manual was served on static pages. The URL changed predictably with each search query. This allowed for the programmatic generation of URL links from a list of source items.
+
+```{r eval=FALSE, include=TRUE}
+access_lev_reference <- function(product) {
+
+  html_search_start <- "https://www.leviton.com/en/support/resources-tools/manufacturer-cross-reference?id-upc="
+  html_search_end <- "&itemsPerPage=1&page=1"
+
+  html_link <- str_c(
+    html_search_start,
+    product,
+    html_search_end
+  )
+
+  read_html(html_link)
+}
+```
+
+This collection of links can then be scraped for translations by targeting the relevant element (using CS selectors).
+
+```{r eval=FALSE, include=TRUE}
+crawl_nodes_for_lev <- function(x) {
+  result <- x |>
+    html_elements(".ss-md.product__title") |>
+    html_element("a") |>
+    html_attr("href") |>
+    str_remove("/en/products/") |>
+    str_to_upper() |>
+    as.character() # coerce from list to character to allow for row binding
+
+  prefixed_result <- str_c(
+    "LEV-",
+    result
+  )
+
+  standardized_result <- if(!length(prefixed_result) == 1) {
+    "NO MATCH FOUND"
+  } else {
+    prefixed_result
+  }
+}
+```
+
+## Citations
+
+Lao V (2023) *fileR: A Pipeable Interface To Directory Creation and Use*. R package, <https://github.com/Spingelhoff/fileR>.
+
+Wickham H (2022). *rvest: Easily Harvest (Scrape) Web Pages*. R package version 1.0.3, <https://CRAN.R-project.org/package=rvest>.

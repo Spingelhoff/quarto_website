@@ -1,0 +1,90 @@
+{
+  "index.qmd": {
+    "index.html": "a1a5a9f2",
+    "index.txt": "8ce01bc4"
+  },
+  "about.qmd": {
+    "about.html": "4f19c81f"
+  },
+  "Resume.qmd": {
+    "Resume.html": "a37cb215"
+  },
+  "listings.qmd": {
+    "listings.html": "b2c0fcb7"
+  },
+  "posts/test.Rmd": {
+    "test.html": "a7b3ce0c"
+  },
+  "posts/UntitledRMD.Rmd": {
+    "UntitledRMD.html": "0422b1f0"
+  },
+  "posts/MakerDAO_dataset_generation_report.Rmd": {
+    "MakerDAO_dataset_generation_report.html": "d25ce1a9"
+  },
+  "posts/revenue_data_exploration_app_report.Rmd": {
+    "revenue_data_exploration_app_report.html": "09b95997"
+  },
+  "posts/WTO_export_map/WTO_export_map_report.Rmd": {
+    "WTO_export_map_report.html": "1a5602cf"
+  },
+  "posts/DAI_transfer_network/DAI_transfer_network_report.Rmd": {
+    "DAI_transfer_network_report.html": "254b70fb"
+  },
+  "posts/2022-09-01-DAI-networkmap/DaiTransfers_NetworkAnalysis_May2021to2022_Report.Rmd": {
+    "DaiTransfers_NetworkAnalysis_May2021to2022_Report.html": "b8afcf83"
+  },
+  "posts/fileR_report.Rmd": {
+    "fileR_report.html": "c6df04de"
+  },
+  "posts/leviton_crossreference_scrape.Rmd": {
+    "leviton_crossreference_scrape.html": "448250a5"
+  },
+  "posts/video_game_analysis_2024.Rmd": {
+    "video_game_analysis_2024.html": "1f24d8f4"
+  },
+  "posts/canadian_provincial_rent_modeling_report.Rmd": {
+    "canadian_provincial_rent_modeling_report.html": "3b0ac4a5"
+  },
+  "posts/video_game_analysis_2024_report.Rmd": {
+    "video_game_analysis_2024_report.html": "984acc51"
+  },
+  "quarto_website/about.qmd": {
+    "about.html": "b2bf8a08"
+  },
+  "quarto_website/index.qmd": {
+    "index.html": "8960e6ff"
+  },
+  "quarto_website/listings.qmd": {
+    "listings.html": "a4fd068d"
+  },
+  "quarto_website/posts/MakerDAO_dataset_generation_report.Rmd": {
+    "MakerDAO_dataset_generation_report.html": "aa010412"
+  },
+  "quarto_website/posts/revenue_data_exploration_app_report.Rmd": {
+    "revenue_data_exploration_app_report.html": "6c2b7f77"
+  },
+  "quarto_website/posts/fileR_report.Rmd": {
+    "fileR_report.html": "b6a6158a"
+  },
+  "quarto_website/posts/leviton_crossreference_scrape.Rmd": {
+    "leviton_crossreference_scrape.html": "26004457"
+  },
+  "quarto_website/posts/video_game_analysis_2024.Rmd": {
+    "video_game_analysis_2024.html": "87097c45"
+  },
+  "quarto_website/posts/WTO_export_map/WTO_export_map_report.Rmd": {
+    "WTO_export_map_report.html": "28b77547"
+  },
+  "quarto_website/posts/2022-09-01-DAI-networkmap/DaiTransfers_NetworkAnalysis_May2021to2022_Report.Rmd": {
+    "DaiTransfers_NetworkAnalysis_May2021to2022_Report.html": "d439319d"
+  },
+  "quarto_website/posts/canadian_provincial_rent_modeling_report.Rmd": {
+    "canadian_provincial_rent_modeling_report.html": "df67f6ff"
+  },
+  "quarto_website/posts/video_game_analysis_2024_report.Rmd": {
+    "video_game_analysis_2024_report.html": "1a43fe02"
+  },
+  "posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.Rmd": {
+    "canadian_provincial_rent_modeling_report.html": "8e16828b"
+  }
+}

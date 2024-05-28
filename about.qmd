@@ -1,0 +1,22 @@
+---
+title: "About Me"
+image: AboutPic.jpg
+about:
+  template: jolla
+---
+
+I am a cell and systems biologist, by training, that pivoted into data. Using the skills I learned as a researcher I am exploring new ways to pursue my passion.
+
+### Experience
+
+Guillevin International \| Data Specialist \| 2022-2024
+
+University of Toronto \| Research Assistant \| 2021
+
+University of Toronto \| Teaching Assistant \| 2018-2020
+
+### Education
+
+University of Toronto, St. George \| Toronto, ON \| Master of Cell and Systems Biology \| 2018-2020
+
+University of Toronto, St. George \| Toronto, ON \| Honors Bachelors of Science \| 2014-2018

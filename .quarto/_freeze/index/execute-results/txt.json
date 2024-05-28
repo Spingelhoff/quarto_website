@@ -1,0 +1,14 @@
+{
+  "hash": "e8fe5610d2652a8dbfeb94cf1fa8d91e",
+  "result": {
+    "markdown": "---\ntitle: \"The Portfolio\"\nformat: asciidoc\nhtml:\ntoc: true\nhtml-math-method: katex\ncss: styles.css\n---\n\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\\<div class=\"card text-white bg-primary mb-3\" style=\"max-width: 20rem;\"\\>\n\n\\<div class=\"card-header\"\\>Header\\</div\\>\n\n\\<div class=\"card-body\"\\>\n\n\\<h4 class=\"card-title\"\\>Primary card title\\</h4\\>\n\n\\<p class=\"card-text\"\\>Some quick example text to build on the card title and make up the bulk of the card's content.\\</p\\>\n\n\\</div\\>\n\n\\</div\\>\n\n\\<div class=\"card bg-secondary mb-3\" style=\"max-width: 20rem;\"\\>\n\n\\<div class=\"card-header\"\\>Header\\</div\\>\n\n\\<div class=\"card-body\"\\>\n\n\\<h4 class=\"card-title\"\\>Secondary card title\\</h4\\>\n\n\\<p class=\"card-text\"\\>Some quick example text to build on the card title and make up the bulk of the card's content.\\</p\\>\n\n\\</div\\>\n\n\\</div\\>\n\n\\<div class=\"card text-white bg-success mb-3\" style=\"max-width: 20rem;\"\\>\n\n\\<div class=\"card-header\"\\>Header\\</div\\>\n\n\\<div class=\"card-body\"\\>\n\n\\<h4 class=\"card-title\"\\>Success card title\\</h4\\>\n\n\\<p class=\"card-text\"\\>Some quick example text to build on the card title and make up the bulk of the card's content.\\</p\\>\n\n\\</div\\>\n\n\\</div\\>\n\n\n    <div class=\"card text-white bg-primary mb-3\" style=\"max-width: 20rem;\">\n      <div class=\"card-header\">Header</div>\n      <div class=\"card-body\">\n        <h4 class=\"card-title\">Primary card title</h4>\n        <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n      </div>\n    </div>\n    <div class=\"card bg-secondary mb-3\" style=\"max-width: 20rem;\">\n      <div class=\"card-header\">Header</div>\n      <div class=\"card-body\">\n        <h4 class=\"card-title\">Secondary card title</h4>\n        <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n      </div>\n    </div>\n    <div class=\"card text-white bg-success mb-3\" style=\"max-width: 20rem;\">\n      <div class=\"card-header\">Header</div>\n      <div class=\"card-body\">\n        <h4 class=\"card-title\">Success card title</h4>\n        <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n      </div>\n    </div>\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
