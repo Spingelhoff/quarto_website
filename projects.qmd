@@ -1,5 +1,4 @@
 ---
-title: "Projects Collection"
 listing:
   - id: project_1
     image-placeholder: RentForecastDashboardPic.png
@@ -41,10 +40,23 @@ listing:
     image-height: "225px"
 ---
 
+```{=html}
+<style>
+  body {
+  background-image: url(TransactionNetworkMod.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+</style>
+```
+# [Projects Collection]{style="background: white"}
+
+::: {style="background: white"}
 These featured projects were selected to highlight my skillset and advancements in data.
+:::
 
 ::: grid
-::: g-col-4
+::: {.g-col-4 style="background: white"}
 #### Rent Forecast PowerBI App
 
 ::: {#project_1}
@@ -57,7 +69,7 @@ I construct and compare multiple predictive models to forecast rent price. Lever
 [Article →](posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.Rmd)
 :::
 
-::: g-col-4
+::: {.g-col-4 style="background: white"}
 #### Rental Market Analysis
 
 ::: {#project_2}
@@ -68,7 +80,7 @@ I delve into the complexities of Canada's rental market by constructing a statis
 [Article →](posts/rental_price_analysis/rental_analysis_article.qmd)
 :::
 
-::: g-col-4
+::: {.g-col-4 style="background: white"}
 #### Metacritic Analysis App
 
 ::: {#project_3}

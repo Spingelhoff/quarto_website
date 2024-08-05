@@ -1,5 +1,4 @@
 ---
-title: "A Portfolio Site"
 about:
     template: jolla
     links: 
@@ -47,6 +46,8 @@ listing:
     max-items: 1
     image-height: "225px"
 ---
+
+```{=html}
 <style>
   body {
   background-image: url(TransactionNetworkMod.svg);
@@ -55,31 +56,38 @@ listing:
   color: black;
 }
 </style>
+```
+# [A Portfolio Site]{style="background: white"}
 
-Welcome to my site. I'm excited you're here! This is where I publish my journey in data, learning and life. Please feel free to take a look around.
+[Welcome to my site. I'm excited you're here! This is where I publish my journey in data, learning and life. Please feel free to take a look around.]{style="background: white"}
 
-## Naviation
-::::{.grid}
+## [Navigation]{style="background: white"}
 
-:::{.g-col-4}
-#### About Me
-:::{#aboutme}
-:::
-Discover my journey and what I can do
-:::
+::: grid
+::: g-col-4
+#### [About Me]{style="background: white"}
 
-:::{.g-col-4}
-#### Projects
-:::{#projects}
-:::
-Explore a curated collection of recent projects
+::: {#aboutme}
 :::
 
-:::{.g-col-4}
-#### Reports
-:::{#reports}
-:::
-Understand my approach to data and analytics
+[Discover my journey and what I can do]{style="background: white"}
 :::
 
-::::
+::: g-col-4
+#### [Projects]{style="background: white"}
+
+::: {#projects}
+:::
+
+[Explore a curated collection of recent projects]{style="background: white"}
+:::
+
+::: g-col-4
+#### [Reports]{style="background: white"}
+
+::: {#reports}
+:::
+
+[Understand my approach to data and analytics]{style="background: white"}
+:::
+:::
