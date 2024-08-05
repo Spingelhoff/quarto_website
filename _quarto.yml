@@ -1,6 +1,5 @@
 project:
   type: website
-  output-dir: docs
 website:
   google-analytics: "G-S4NG67LZ08"
   title: "Victor Lao's Portfolio"
