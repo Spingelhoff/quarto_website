@@ -2,6 +2,7 @@
 title: "Investigating the Determinants of Rent in Canadian Provinces"
 date: 2024-08-01
 author: "Victor Lao"
+image: "CausalModelPic.png"
 format:
   html:
     theme: lux
