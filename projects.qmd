@@ -1,0 +1,83 @@
+---
+title: "Projects Collection"
+listing:
+  - id: project_1
+    image-placeholder: RentForecastDashboardPic.png
+    contents: 
+      - posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.Rmd
+    sort: date desc
+    type: grid
+    grid-columns: 1
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [image]
+    max-items: 1
+    image-height: "225px"
+  - id: project_2
+    contents: 
+      - rental_analysis_article.qmd
+    sort: date desc
+    type: grid
+    grid-columns: 1
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [image]
+    max-items: 1
+    image-height: "225px"
+  - id: project_3
+    image-placeholder: MetacriticAppPic.png
+    contents: 
+      - posts/video_game_analysis/video_game_analysis_2024_report.Rmd
+    sort: date desc
+    type: grid
+    grid-columns: 1
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [image]
+    max-items: 1
+    image-height: "225px"
+---
+
+These featured projects were selected to highlight my skillset and advancements in data.
+
+::: grid
+::: g-col-4
+#### Rent Forecast PowerBI App
+
+::: {#project_1}
+:::
+
+I construct and compare multiple predictive models to forecast rent price. Leveraging comprehensive data, I provide actionable insights through an interactive PowerBI dashboard, highlighting the factors shaping rental costs across the country.
+
+[App →](https://app.powerbi.com/view?r=eyJrIjoiYTZiZjJkMGEtNDZlNy00YWRkLTgyYTAtYzI2OTMwMjllZDQxIiwidCI6IjY0MmE2ZGUyLTJiODktNDJkOC05MDZhLTIxM2E4NWEzZTMxOCJ9)
+
+[Article →](posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.Rmd)
+:::
+
+::: g-col-4
+#### Rental Market Analysis
+
+::: {#project_2}
+:::
+
+I delve into the complexities of Canada's rental market by constructing a statistical model. Using data from Statistics Canada and CMHC, I employ ordinary least squares regression to identify key factors influencing rent prices nationwide.
+
+[Article →](posts/rental_price_analysis/rental_analysis_article.qmd)
+:::
+
+::: g-col-4
+#### Metacritic Analysis App
+
+::: {#project_3}
+:::
+
+I leverage Shiny to craft an intuitive dashboard exploring Metacritic's game ratings over time. By emphasizing interactive elements, I provide an application that empowers users to explore and uncover hidden patterns and trends within the gaming industry.
+
+[App →](https://szys2b-victor-lao.shinyapps.io/video_game_analysis_2024)
+
+[Article →](posts/video_game_analysis/video_game_analysis_2024_report.Rmd)
+:::
+:::

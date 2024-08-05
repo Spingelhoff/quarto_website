@@ -1,12 +1,29 @@
 [
   {
-    "listing": "/listings.html",
+    "listing": "/projects.html",
     "items": [
       "/posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.html",
-      "/posts/video_game_analysis_2024_report.html",
+      "/posts/rental_price_analysis/rental_analysis_article.html",
+      "/posts/video_game_analysis/video_game_analysis_2024_report.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/about.html",
+      "/projects.html",
+      "/listings.html"
+    ]
+  },
+  {
+    "listing": "/listings.html",
+    "items": [
+      "/posts/rental_price_analysis/rental_analysis_article.html",
+      "/posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.html",
+      "/posts/video_game_analysis/video_game_analysis_2024_report.html",
       "/posts/fileR_report.html",
       "/posts/leviton_crossreference_scrape.html",
-      "/posts/revenue_data_exploration_app_report.html",
+      "/posts/revenue_exploration_app/revenue_data_exploration_app_report.html",
       "/posts/WTO_export_map/WTO_export_map_report.html",
       "/posts/2022-09-01-DAI-networkmap/DaiTransfers_NetworkAnalysis_May2021to2022_Report.html",
       "/posts/MakerDAO_dataset_generation_report.html"

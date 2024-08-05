@@ -1,7 +1,7 @@
 project:
   type: website
-
 website:
+  google-analytics: "G-S4NG67LZ08"
   title: "Victor Lao's Portfolio"
   navbar:
     left:
@@ -9,13 +9,7 @@ website:
         text: Home
       - href: about.qmd
         text: About Me
-      - menu:
-        - href: https://app.powerbi.com/view?r=eyJrIjoiYTZiZjJkMGEtNDZlNy00YWRkLTgyYTAtYzI2OTMwMjllZDQxIiwidCI6IjY0MmE2ZGUyLTJiODktNDJkOC05MDZhLTIxM2E4NWEzZTMxOCJ9
-          text: Canadian Provincial Rent Power BI Dashboard
-        - href: https://szys2b-victor-lao.shinyapps.io/video_game_analysis_2024
-          text: Metacritic Featured Games Shiny App
-        - href: https://github.com/Spingelhoff/fileR
-          text: fileR Package
+      - href: projects.qmd
         text: Projects
       - href: listings.qmd
         text: Reports
@@ -26,7 +20,7 @@ format:
   html:
     theme: lux
     css: styles.css
-    toc: true
+    toc: false
 
 editor: visual
 

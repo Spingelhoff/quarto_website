@@ -86,5 +86,23 @@
   },
   "posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.Rmd": {
     "canadian_provincial_rent_modeling_report.html": "8e16828b"
+  },
+  "posts/rental_price_analysis/4b_state_conclusions.qmd": {
+    "4b_state_conclusions.html": "9468510d"
+  },
+  "posts/rental_price_analysis/rental_analysis_article.qmd": {
+    "rental_analysis_article.html": "23eb940c"
+  },
+  "project_page.qmd": {
+    "project_page.html": "be8192e9"
+  },
+  "projects.qmd": {
+    "projects.html": "c16b5a18"
+  },
+  "posts/video_game_analysis/video_game_analysis_2024_report.Rmd": {
+    "video_game_analysis_2024_report.html": "7fc03428"
+  },
+  "posts/revenue_exploration_app/revenue_data_exploration_app_report.Rmd": {
+    "revenue_data_exploration_app_report.html": "5d73f0de"
   }
 }

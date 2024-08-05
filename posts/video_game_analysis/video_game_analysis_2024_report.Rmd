@@ -1,0 +1,195 @@
+---
+title: "Shiny App of Metacritic Featured Games Throughout Time"
+image: "MetacriticDashboardPic.png"
+author: "Victor Lao"
+date: 2024-04-18
+output:
+  blogdown::html_page:
+toc: true
+---
+
+## Introduction
+
+Gaming is a rapidly growing industry with a consumer history that stretches back to the 1970s. Throughout the years many games have been released that have had profound impact on the gaming community. To sift through the quantity of releases, video game critics have established themselves as core members of the gaming ecosystem. Metacritic is a website that aggregates video game (among other mediums) reviews and has proven to be highly influential.
+
+Taking the history of games featured on Metacritic and diving into the data can reveal many insights into the historic interplay between games and consumer opinion. It can also help in suggesting high quality games to play (which may be my main motivator for this analysis...). Using Shiny can aid in this exploration by facilitating dynamic viewpoints of the data.
+
+## Methodology
+
+Metacritic data was obtained through Kaggle as a publicly available dataset (link: <https://www.kaggle.com/datasets/beridzeg45/video-games>). Data was obtained by the publisher through scraping the Metacritic website using Python libraries.
+
+Data was then enriched through personal knowledge to create a more descriptive dataset. In brief, genres were condensed into 12 categories.
+
+```{r eval=FALSE, include=TRUE}
+  mutate(
+    ...,
+    genre = case_when(
+      str_detect(genre, "RPG") ~ "RPG",
+      str_detect(genre, "Adventure|Platform|Metroid|Point") ~ "Adventure",
+      str_detect(genre, "Strategy|RTS|Tactic|MOBA|Defense") ~ "Strategy",
+      str_detect(genre, "Racing") ~ "Racing",
+      str_detect(genre, "Fight") ~ "Fighter",
+      str_detect(genre, "Action|Beat|Arcade|Sandbox|Rougelike") ~ "Action",
+      str_detect(genre, "Shoot|FPS|Gun|Artillery") ~ "Shooter",
+      str_detect(genre, "Sim|Virtual|Manage|Tycoon|Visual Novel") ~ "Sim",
+      str_detect(genre, "Puzzle|Hidden|Trivia|Edutainment") ~ "Puzzle",
+      str_detect(genre, "Sport|Ball|ball|Golf|Ski|Wrest|Rugb|Hock|Billi|Tenn|Socc|Bik|Skat|Hunt|Surf|Crick|Bowl|Fish|Athlet|Gambl") ~ "Sport",
+      str_detect(genre, "Danc|Party|Rhythm|Exercise") ~ "Party",
+      str_detect(genre, "Survival") ~ "Survival",
+      TRUE ~ "Other"
+    ),
+    ...
+  )
+```
+
+Platform versions were grouped into console families.
+
+```{r eval=FALSE, include=TRUE}
+  mutate(
+    platform_condensed = case_when(
+      str_detect(platform, "iOS") ~ "Phone",
+      str_detect(platform, "Xbox") ~ "Xbox",
+      str_detect(platform, "Playstation|PlayStation|PSP") ~ "Playstation",
+      str_detect(platform, "Game|Wii|Nintendo|DS") ~ "Nintendo",
+      str_detect(platform, "Dreamcast") ~ "Dreamcast",
+      str_detect(platform, "PC") ~ "PC",
+      str_detect(platform, "Meta Quest") ~ "Meta VR",
+      TRUE ~ "Other"
+    ),
+    ...
+  )
+```
+
+Locality of each platform was annotated.
+
+```{r eval=FALSE, include=TRUE}
+  mutate(
+    ...,
+    locality = case_when(
+      str_detect(platform, "iOS|PSP|DS|Game Boy") ~ "Mobile",
+      TRUE ~ "Home Console"
+    ),
+    ...
+  )
+```
+
+Exclusivity was determined by marking duplicated titles.
+
+```{r eval=FALSE, include=TRUE}
+  mutate(
+    ...,
+    exclusivity = case_when(
+    duplicated(title) | duplicated(title, fromLast = TRUE) ~ "Multi-Platform",
+    TRUE ~ "Exclusive"
+    ),
+    ...
+  )
+```
+
+Scores were annotated with colloquial interpretations to give a more accurate representation of sentiment.
+
+```{r eval=FALSE, include=TRUE}
+  mutate(
+    ...,
+    metacritic_score = as.numeric(metacritic_score),
+    metacritic_score_factorized = case_when(
+      metacritic_score <= 50 ~ "Poor",
+      metacritic_score > 50 & metacritic_score <= 70 ~ "Average",
+      metacritic_score > 70 & metacritic_score <= 90 ~ "Good",
+      metacritic_score > 90 ~ "Excellent",
+      TRUE ~ "Unscored"
+    ),
+    ...
+  )
+```
+
+Independence was defined as publishers with only one developer under them. It should be noted that the validity of this categorization increases with time as successful indie companies eventually become commercial.
+
+```{r eval=FALSE, include=TRUE}
+  group_by(
+    publisher
+  ) |>
+  mutate(
+    total_developer_under_publisher = n_distinct(developer)
+  ) |>
+  ungroup() |>
+  mutate(
+    independance = case_when(
+      total_developer_under_publisher == 1 ~ "Indie",
+      TRUE ~ "Commercial"
+    )
+  )
+```
+
+The full data cleaning manipulation procedure can be found on my github: <https://github.com/Spingelhoff/video_game_analysis_2024/blob/main/video_game_analysis_2024.R>
+
+Cleaned data was then showcased through Shiny. Number of games featured were divided by genre and color coded by colloquial score categories in a stacked bar graph. Distribution of titles by user score and Metacritic score were plotted as a scatterplot. Both graphs were connected interactively via ggiraph. By hovering over each genre bar, the distribution of points on the score scatterplot corresponding to the genre selected is highlighted.
+
+```{r eval=FALSE, include=TRUE}
+output$combined_plot <- renderGirafe({
+    genre_plot <- ggplot(
+      yearly_genre_ratings(),
+      aes(x = fct_rev(genre), y = n_scored, fill = metacritic_score_factorized, data_id = genre)) +
+      geom_col_interactive(color = "black") +
+      coord_flip() +
+      theme_classic() +
+      scale_x_discrete(expand = c(0,0)) +
+      scale_y_continuous(expand = c(0,0)) +
+      scale_fill_brewer(palette = "RdBu", direction = -1) +
+      theme(
+        legend.position = "bottom",
+        text = element_text(size = 10)
+      ) +
+      xlab("# of Games") +
+      ylab("Genre") +
+      labs(
+        fill = "Scoring"
+      )
+    
+    ambivalence_plot <- ggplot(
+      yearly_ambivalence(),
+      aes(x = avg_user_score, y = avg_metacritic_score, size = critic_coverage, alpha = critic_coverage, color = classification, data_id = genre)) +
+      geom_point_interactive(
+        aes(tooltip = paste0(
+          "Title: ", title, "\n",
+          "Genre: ", genre, "\n",
+          "Critic Score: ", avg_metacritic_score, "\n",
+          "User Score:", avg_user_score, "\n")
+        )
+      ) +
+      theme_classic() +
+      scale_color_manual(
+        name = "Preference",
+        values = c("#4F7EBB", "grey", "#BC3D41")) +
+      scale_size_continuous(name = "Coverage") +
+      scale_alpha_continuous(name = "Coverage") +
+      theme(
+        legend.position = "bottom",
+        text = element_text(size = 10)
+      ) +
+      xlab("User Score") +
+      ylab("Metacritic Score") +
+      guides(
+        color = "none"
+      )
+    
+    girafe(ggobj = genre_plot + ambivalence_plot, width_svg = 12, height_svg = 5) |>
+      girafe_options(
+        opts_hover(css = "stroke:black;stroke-width:2px;fill-opacity:1;"),
+        opts_hover_inv(css = "fill-opacity:0.2"),
+        opts_selection(css = "stroke:black;stroke-width:2px;fill-opacity:1;",
+                       type = "multiple"),
+        opts_selection_inv(css = "fill-opacity:0.2")
+      )
+  })
+```
+
+Top 5 Metacritic and user scored games as well as most divergently scored Metacritic and user scored games were shown through tables. Finally, locality, exclusivity and independence of titles were plotted as pie charts.
+
+## References
+
+Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, McPherson J, Dipert A, Borges B (2022). *shiny: Web Application Framework for R*. R package version 1.7.4, <https://CRAN.R-project.org/package=shiny>.
+
+David Gohel and Panagiotis Skintzos (2024). ggiraph: Make 'ggplot2' Graphics Interactive. R package version 0.8.9. <https://CRAN.R-project.org/package=ggiraph>
+
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). "Welcome to the tidyverse." Journal of Open Source Software, 4(43), 1686. <doi:10.21105/joss.01686>.

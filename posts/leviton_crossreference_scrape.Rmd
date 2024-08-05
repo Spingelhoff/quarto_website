@@ -1,5 +1,6 @@
 ---
 title: "Using Rvest to Create a Product Code Translator"
+image: "DataTransfers.jpeg"
 author: "Victor Lao"
 date: 2023-03-28
 output: 
@@ -15,7 +16,7 @@ A recent problem I came across was the conversion of product codes from one manu
 
 ## Repository Link
 
-https://github.com/Spingelhoff/leviton_crossreference_scraper
+<https://github.com/Spingelhoff/leviton_crossreference_scraper>
 
 ## Methodology
 

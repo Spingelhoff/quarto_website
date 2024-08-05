@@ -1,7 +1,17 @@
 {
   "listingMap": {
+    "index.qmd": [
+      "about.qmd",
+      "projects.qmd",
+      "listings.qmd"
+    ],
     "listings.qmd": [
       "posts"
+    ],
+    "projects.qmd": [
+      "posts/canadian_provincial_rent_powerbi_model/canadian_provincial_rent_modeling_report.Rmd",
+      "rental_analysis_article.qmd",
+      "posts/video_game_analysis/video_game_analysis_2024_report.Rmd"
     ]
   }
 }

@@ -1,5 +1,6 @@
 ---
 title: "Network Mapping the Most Influential Addresses using DAI (2021): Extracting Blockchain Data from Public Google Datasets with BigQuery and SQL"
+image: "DataTransfers.jpeg"
 author: "Victor Lao"
 date: 2022-08-30
 output: 
@@ -9,32 +10,14 @@ output:
 
 ## Introduction
 
-Blockchain technologies are inarguably reshaping how the general public thinks
-of finance. One particularly interesting innovation is the concept of
-decentralized autonomous organizations (or DAOs). Leveraging the transparency of
-the blockchain, DAOs endeavour to collaboratively run organizations in a 
-trustless way. This novel method of conducting corporate operations makes a 
-compelling subject for analysis.
+Blockchain technologies are inarguably reshaping how the general public thinks of finance. One particularly interesting innovation is the concept of decentralized autonomous organizations (or DAOs). Leveraging the transparency of the blockchain, DAOs endeavour to collaboratively run organizations in a trustless way. This novel method of conducting corporate operations makes a compelling subject for analysis.
 
-One prominent DAO is MakerDAO. They are most well known for their 
-over-collateralized USD stable coin, DAI. As all core MakerDAO operations and
-products operate through the blockchain, I retrieved all emitted event logs 
-pertaining to MakerDAO smart contracts (executes blockchain functions) using
-BigQuery and the MakerDAO technical docs.
+One prominent DAO is MakerDAO. They are most well known for their over-collateralized USD stable coin, DAI. As all core MakerDAO operations and products operate through the blockchain, I retrieved all emitted event logs pertaining to MakerDAO smart contracts (executes blockchain functions) using BigQuery and the MakerDAO technical docs.
 
 ## Methodology
 
-Table of MakerDAO events was created using the publicly available Ethereum
-blockchain dataset on BigQuery. As addresses are stored on the blockchain as
-a 42 character hexadecimal, all smart contract addresses were converted to their
-contract name using MakerDAO technical docs. Topic 0 of event logs typically
-contains a unqiue event type specific index and was used to annotate function 
-events. Each unique event type was individually parsed for sender identity,
-reciever identity and value. Makerdao stores values as integers which stand for
-differing decimals of percision depending on the event type. An unfortunate
-side effect of this storage method is that the values are too large for BigQuery
-to handle (can only go up to INT64). This necessitated using R to view the
-correct values. Values were stored on BigQuery as hexadecimals.
+Table of MakerDAO events was created using the publicly available Ethereum blockchain dataset on BigQuery. As addresses are stored on the blockchain as a 42 character hexadecimal, all smart contract addresses were converted to their contract name using MakerDAO technical docs. Topic 0 of event logs typically contains a unqiue event type specific index and was used to annotate function events. Each unique event type was individually parsed for sender identity, reciever identity and value. Makerdao stores values as integers which stand for differing decimals of percision depending on the event type. An unfortunate side effect of this storage method is that the values are too large for BigQuery to handle (can only go up to INT64). This necessitated using R to view the correct values. Values were stored on BigQuery as hexadecimals.
+
 ```{sql eval=FALSE}
 CREATE TABLE 
      makerdao_operations.may2021to2022
@@ -306,10 +289,8 @@ WHERE logs.block_timestamp BETWEEN '2021-05-30' and '2022-05-30'
 
 ```
 
-
 ## References
 
-MakerDAO (2021). MakerDAO Technical Docs. URL https://docs.makerdao.com/
+MakerDAO (2021). MakerDAO Technical Docs. URL <https://docs.makerdao.com/>
 
-Google (2021). BigQuery. URL https://cloud.google.com/bigquery
-
+Google (2021). BigQuery. URL <https://cloud.google.com/bigquery>

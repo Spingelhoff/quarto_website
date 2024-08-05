@@ -1,6 +1,5 @@
 ---
 title: "A Portfolio Site"
-image: ProfilePic.jpg
 about:
     template: jolla
     links: 
@@ -10,10 +9,77 @@ about:
       - icon: linkedin
         text: linkedin
         href: https://www.linkedin.com/in/victor-lao-3827ba196
+listing:
+  - id: aboutme
+    contents: 
+      - about.qmd
+    sort: date desc
+    type: grid
+    grid-columns: 1
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [image]
+    max-items: 1
+    image-height: "225px"
+  - id: projects
+    contents: 
+      - projects.qmd
+    sort: date desc
+    type: grid
+    grid-columns: 1
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [image]
+    max-items: 1
+    image-height: "225px"
+  - id: reports
+    contents: 
+      - listings.qmd
+    sort: date desc
+    type: grid
+    grid-columns: 1
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    fields: [image]
+    max-items: 1
+    image-height: "225px"
 ---
+<style>
+  body {
+  background-image: url(TransactionNetworkMod.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+}
+</style>
 
-## Data Specialist \| Researcher \| Analyst
+Welcome to my site. I'm excited you're here! This is where I publish my journey in data, learning and life. Please feel free to take a look around.
 
-A researcher at heart, I love to work with data and I am passionate about learning new ways to pursue research based hypotheses.
+## Naviation
+::::{.grid}
 
-This website is a space for me to share my journey with data. I include all personal projects with structured reports. Personal career information is also available.
+:::{.g-col-4}
+#### About Me
+:::{#aboutme}
+:::
+Discover my journey and what I can do
+:::
+
+:::{.g-col-4}
+#### Projects
+:::{#projects}
+:::
+Explore a curated collection of recent projects
+:::
+
+:::{.g-col-4}
+#### Reports
+:::{#reports}
+:::
+Understand my approach to data and analytics
+:::
+
+::::

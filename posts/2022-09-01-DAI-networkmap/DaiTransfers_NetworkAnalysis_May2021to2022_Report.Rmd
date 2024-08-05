@@ -1,5 +1,6 @@
 ---
 title: "Network Mapping the Most Influential Addresses Using DAI (2021)"
+image: "DAINetworkPic.png"
 author: "Victor Lao"
 date: 2022-09-01
 output: 

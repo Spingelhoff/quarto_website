@@ -1,5 +1,6 @@
 ---
 title: "fileR: A Pipeable Interface to Directory Creation and Use"
+image: "DataTransfers.jpeg"
 author: "Victor Lao"
 date: 2023-04-15
 output:
@@ -47,7 +48,7 @@ save_csv_to_results_folder <- function(x, folder_name, file_name, ...) {
 
 The above 'save_csv_to_results_folder' function returns 'x' invisibly. One use case, would be to save intermediate results to a folder which allows you to produce multiple outputs in one pipe without having to exit the pipe.
 
-Functions were also written to read data from entire folders and return them as a list. There is no function to recursively retrieve files from an entire directory as it should be clear where your data is coming from (i.e., you should state it in code). 
+Functions were also written to read data from entire folders and return them as a list. There is no function to recursively retrieve files from an entire directory as it should be clear where your data is coming from (i.e., you should state it in code).
 
 ```{r eval=FALSE, include=TRUE}
 read_all_csv_from_data <- function(folder_name = NULL, ...) {
@@ -146,7 +147,7 @@ Functions were named to be descriptive at the cost of being verbose.
 
 ### create_data_folder()
 
-Purpose: To create a folder in the 'data' directory. Data should be moved into pre-existing 'data' locations. 
+Purpose: To create a folder in the 'data' directory. Data should be moved into pre-existing 'data' locations.
 
 ### list_data_files()
 
@@ -174,7 +175,7 @@ Purpose: To return all csv files in the 'data' directory as a list. Sub-director
 
 ### read_all_csv_from_results()
 
-Purpose: To return all csv files in the 'results' directory as a list. Sub-directories of the 'results' directory should be targeted over the entire 'results' directory. 
+Purpose: To return all csv files in the 'results' directory as a list. Sub-directories of the 'results' directory should be targeted over the entire 'results' directory.
 
 ### read_csv_from_data()
 
@@ -186,7 +187,7 @@ Purpose: To read a single csv file from the 'data' directory or one of its sub-d
 
 ### save_csv_to_results_folder()
 
-Purpose: To save an object to the 'results' directory or one of its sub-directories as a csv file. Will create a sub-directory or 'folder' if one does not exist. Will return the object passed in invisibly. 
+Purpose: To save an object to the 'results' directory or one of its sub-directories as a csv file. Will create a sub-directory or 'folder' if one does not exist. Will return the object passed in invisibly.
 
 ### setup_fileR_directories()
 

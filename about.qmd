@@ -1,22 +1,34 @@
 ---
 title: "About Me"
-image: AboutPic.jpg
+image: ProfilePic.jpg
 about:
   template: jolla
 ---
 
-I am a cell and systems biologist, by training, that pivoted into data. Using the skills I learned as a researcher I am exploring new ways to pursue my passion.
+##  Analyst \| Researcher \| Data Specialist
 
-### Experience
+My journey began in a wet lab, studying epigenetics in *C. elegans*. This foundation ignited a passion for hypothesis-driven research. As I delved deeper into data analysis using R, a new world of possibilities opened up.
 
-Guillevin International \| Data Specialist \| 2022-2024
+Driven by curiosity, I immersed myself in the art and science of data manipulation, visualization, and modeling. Through hands-on projects, I solidify my understanding and share my learnings with the world.
 
-University of Toronto \| Research Assistant \| 2021
+This website is a testament to my data exploration. Here, I document my projects, providing detailed methodologies alongside results.
 
-University of Toronto \| Teaching Assistant \| 2018-2020
+## Experience
 
-### Education
+#### Guillevin International \| Data Specialist \| 2022-2024
 
-University of Toronto, St. George \| Toronto, ON \| Master of Cell and Systems Biology \| 2018-2020
+Leveraged data analytics and automation to drive operational efficiency, customer engagement, and financial performance across various departments, resulting in significant cost savings and revenue generation.
 
-University of Toronto, St. George \| Toronto, ON \| Honors Bachelors of Science \| 2014-2018
+#### Freelance \| Statistical/R Programmer \| 2021 - 2022
+
+Enhanced data efficiency through automation, streamlining data extraction, cleaning, and analysis processes for clients
+
+#### University of Toronto \| Research & Teaching Assistant \| 2018 - 2021
+
+Conducted comprehensive research on histone-methyl-binding proteins in *C. elegans*, resulting in a published thesis and methodology paper, while simultaneously mentoring undergraduate students in laboratory techniques
+
+## Education
+
+#### University of Toronto, St. George \| Toronto, ON \| Master of Cell and Systems Biology \| 2018-2020
+
+#### University of Toronto, St. George \| Toronto, ON \| Honors Bachelors of Science \| 2014-2018

@@ -1,6 +1,7 @@
 ---
 title: "Modeling Canadian Rent Data and Visualizing Using Power BI"
 author: "Victor Lao"
+image: "RentForecastDashboardPic.png"
 date: 2024-05-28
 output:
   blogdown::html_page:

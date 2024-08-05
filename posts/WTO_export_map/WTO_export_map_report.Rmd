@@ -1,5 +1,6 @@
 ---
 title: "World Trade Organization Export Map: Agricultural and Non-Agricultural Export Data for 2021 Visualized Using Leaflet"
+image: "WTOMapPic.png"
 author: "Victor Lao"
 date: 2022-09-01
 output: 
